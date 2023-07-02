@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      function checkService() {
+        $.ajax({
+          url: "http://127.0.0.1:5000",
+          type: "GET",
+          success: function(response, status, xhr) {
+            if (xhr.status === 200) {
+              console.log("O serviço está disponível!");
+              // Realize a ação específica quando o serviço estiver disponível
+            } else {
+              console.log("O serviço retornou um código de status diferente de 200.");
+              // Realize a ação específica quando o serviço retornar um código de status diferente de 200
+            }
+          },
+          error: function(xhr, status, error) {
+            console.log("Erro na solicitação. Código de retorno: " + xhr.status);
+            // Realize a ação específica quando ocorrer um erro na solicitação
+          }
+        });
+      }
+
+      // Verifica o serviço a cada 10 segundos
+      setInterval(checkService, 10000);
+    });
+  </script>
+</head>
+<body>
+  <!-- Seu conteúdo HTML aqui -->
+</body>
+</html>
